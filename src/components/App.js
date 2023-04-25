@@ -9,6 +9,9 @@ import api from "../utils/Api";
 import '../index.css';
 
 export default function App() {
+    const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
+    const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+    const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
     const [userAvatar, setUserAvatar] = useState(avatar);
     const [userName, setUserName] = useState("Жак-Ив Кусто");
     const [userDescription, setUserUserDescription] = useState("Исследователь океана");
@@ -25,12 +28,10 @@ export default function App() {
             setUserUserDescription(userData.about)
             setCards(cards)
         }
-        fetchData()
+        fetchData().catch(err => alert(`Произошла ошибка, ${err}`))
     }, []);
 
-    const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false),
-        [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false),
-        [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false)
+
 
     const handleEditProfileClick = () => { setIsEditProfilePopupOpen(true); }
 
@@ -50,10 +51,10 @@ export default function App() {
         setIsImageOpen(false);
     }
 
-    document.body.className = "page";
     return (
         <>
             <Header />
+            
             <Main
                 onEditProfile={handleEditProfileClick}
                 onAddPlace={handleAddPlaceClick}
@@ -64,19 +65,52 @@ export default function App() {
                 userDescription={userDescription}
                 cards={cards}
             />
+
             <Footer />
+
             <PopupWithForm
                 isOpen={isEditProfilePopupOpen}
                 onClose={closeAllPopups}
-            />
+                title='Редактировать профиль'
+            >
+
+                <input id="input-name" type="text" className='popup__input popup__input_type_name' name="userName"
+                    placeholder="Имя" minLength="2" maxLength="40" required />
+                <span id="input-name-error" className="popup__input-error"></span>
+                <input id="input-description" type="text" className='popup__input popup__input_type_description'
+                    name="userText" placeholder="О себе" minLength="2" maxLength="200" required />
+                <span id="input-description-error" className="popup__input-error"></span>
+
+            </PopupWithForm>
+
+
             <PopupWithForm
                 isOpen={isAddPlacePopupOpen}
                 onClose={closeAllPopups}
-            />
+                title='Новое место'
+                buttonText='Создать'>
+
+                <input id="input-title" type="text" className='popup__input popup__input_type_name' name="cardName"
+                    placeholder="Название" minLength="2" maxLength="30" required />
+                <span id="input-title-error" className="popup__input-error"></span>
+                <input id="input-link" type="url" className='popup__input popup__input_type_description' name="cardUrl"
+                    placeholder="Ссылка на картинку" required />
+                <span id="input-link-error" className="popup__input-error"></span>
+
+            </PopupWithForm>
+
             <PopupWithForm
                 isOpen={isEditAvatarPopupOpen}
                 onClose={closeAllPopups}
-            />
+                title='Обновить аватар'>
+
+                <input id="input-avatar" type="url" className='popup__input popup__input_type_description' name="avatar"
+                    placeholder="Ссылка на аватар" required />
+                <span id="input-avatar-error" className="popup__input-error"></span>
+
+            </PopupWithForm>
+
+
             < ImagePopup
                 isOpen={isImageOpen}
                 onClose={closeAllPopups}
