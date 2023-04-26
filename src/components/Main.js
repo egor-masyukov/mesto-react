@@ -24,6 +24,7 @@ export default function Main(props) {
                 <ul className="places__cards">
                     {props.cards.map((card) => (
                         <Card
+                            key={card._id}
                             link={card.link}
                             name={card.name}
                             likes={card.likes.length}
@@ -32,7 +33,6 @@ export default function Main(props) {
                         />
                     ))
                     }
-
                 </ul>
             </section>
         </main>
