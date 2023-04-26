@@ -31,8 +31,6 @@ export default function App() {
         fetchData().catch(err => alert(`Произошла ошибка, ${err}`))
     }, []);
 
-
-
     const handleEditProfileClick = () => { setIsEditProfilePopupOpen(true); }
 
     const handleAddPlaceClick = () => { setIsAddPlacePopupOpen(true); }
@@ -54,7 +52,7 @@ export default function App() {
     return (
         <>
             <Header />
-            
+
             <Main
                 onEditProfile={handleEditProfileClick}
                 onAddPlace={handleAddPlaceClick}
@@ -83,7 +81,6 @@ export default function App() {
 
             </PopupWithForm>
 
-
             <PopupWithForm
                 isOpen={isAddPlacePopupOpen}
                 onClose={closeAllPopups}
@@ -109,7 +106,6 @@ export default function App() {
                 <span id="input-avatar-error" className="popup__input-error"></span>
 
             </PopupWithForm>
-
 
             < ImagePopup
                 isOpen={isImageOpen}

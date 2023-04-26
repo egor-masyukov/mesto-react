@@ -4,7 +4,7 @@ export default function Card(props) {
     const handleClick = () => { props.onCardClick(props.card); }
 
     return (
-        <li className="place">
+        <li key={props._id} className="place">
             <img className="place__image" onClick={handleClick} src={props.link} alt={props.name} />
             <button className="place__button-delete" type="button" />
             <div className="place__title-zone">
