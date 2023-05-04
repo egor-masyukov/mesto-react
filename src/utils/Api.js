@@ -61,11 +61,11 @@ class Api {
   }
 
   //отправка данных пользователя
-  editUserData(profileData) {
+  editUserData(name, about) {
     return fetch(`${this._url}/users/me`, {
       headers: this._headers,
       method: 'PATCH',
-      body: JSON.stringify({ name: profileData.userName, about: profileData.userText })
+      body: JSON.stringify({name, about})
     }).then(this._checkResponse)
   }
 
