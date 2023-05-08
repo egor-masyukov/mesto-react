@@ -4,13 +4,13 @@ import CurrentUserContext from '../contexts/CurrentUserContext';
 
 export default function EditProfilePopup(props) {
     const currentUser = useContext(CurrentUserContext);
-    const [name, setName] = useState("");
-    const [description, setDescription] = useState("");
+    const [name, setName] = useState('');
+    const [description, setDescription] = useState('');
 
     useEffect(() => {
         setName(currentUser.name);
         setDescription(currentUser.about);
-    }, [currentUser]);
+    }, [currentUser, props.isOpen]);
 
     const handleSubmit = (event) => {
         event.preventDefault();

@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import PopupWithForm from "./PopupWithForm";
 
 export default function EditAvatarPopup(props) {
-    const [name, setName] = useState("");
-    const [link, setLink] = useState("");
+    const [name, setName] = useState('');
+    const [link, setLink] = useState('');
 
     useEffect(() => {
-        setName(name);
-        setLink(link);
-    }, [])
+        setName('');
+        setLink('');
+    }, [props.isOpen])
 
     const handleSubmit = (event) => {
         event.preventDefault();

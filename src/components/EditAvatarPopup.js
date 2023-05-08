@@ -4,8 +4,8 @@ import PopupWithForm from "./PopupWithForm";
 export default function EditAvatarPopup(props) {
     const avatarRef = useRef();
     useEffect(() => {
-        avatarRef.current.value = ""
-    }, []);
+        avatarRef.current.value = ''
+    }, [props.isOpen]);
 
     const handleSubmit = (event) => {
         event.preventDefault();
